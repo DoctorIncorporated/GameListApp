@@ -1,0 +1,17 @@
+form{
+    width:400px;
+    margin: 0 auto 0 auto;
+    color: blue;
+    border:1px solid blue;
+    border-radius: 10px;
+    padding: 0 40px 20px 40px;
+    font-family: Helvetica, sans-serif;
+}
+
+button{
+    margin-top: 10px;
+}
+
+input{
+    width: 100%;
+}
