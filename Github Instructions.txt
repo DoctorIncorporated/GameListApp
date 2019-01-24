@@ -1,0 +1,18 @@
+##-To Install New Repository Into Local Directory
+git init
+git add .
+git commit -m "COMMIT MESSAGE"
+git remote add origin https://github.com/DoctorIncorporated/gitTest.git
+git push -u origin master
+//---------------------------------------------------------------------
+##-To Make New Directory of this Repository
+git init
+git clone https://github.com/DoctorIncorporated/gitTest.git
+//---------------------------------------------------------------------
+##-Update Existing Repository
+git add .
+git commit -m "COMMIT MESSAGE"
+git push
+//---------------------------------------------------------------------
+##-To Update Existing Workspace
+git pull (((?)))origin master(((?)))
