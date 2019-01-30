@@ -1,4 +1,5 @@
 var express = require('express');
+var exphbs = require('express-handlebars');
 var app = express();
 var port = 5000;
 var path = require('path');
@@ -18,13 +19,22 @@ mongoose.connect("mongodb://localhost:27017/gameentries", {
 require('./models/Entry');
 var Entry = mongoose.model('Entries');
 
+//sets up dandlebars as our view engine
+app.engine('handlebars', exphbs({
+    defaultLayout: 'main'
+}));
+app.set('view engine', 'handlebars');
+
 //Functions needed to run body-parser
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 //Route to index.html
 router.get('/', function(req, res){
-    res.sendFile(path.join(__dirname+'/index.html'));
+    //res.sendFile(path.join(__dirname+'/index.html'));
+    var title = "Welcome to the GameApp page";
+
+    res.render('index', {title:title});
 });
 
 app.get('/getdata', function(req, res){

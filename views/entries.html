@@ -3,11 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Game List App Page</title>
+    <link href="main.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-    <h1>Here is the list: </h1>
-    <div id="entries-list">
+    <div id="wrapper">
+        <h1>Here is the list: </h1>
+        <div id="entries-list">
 
+        </div>
     </div>
     <script>
         fetch('/getdata').then(function(res){
@@ -16,7 +19,7 @@
             console.log(JSON.stringify(entries));
             entries.entries.forEach(function(entry){
                 document.getElementById("entries-list").innerHTML += 
-                "<div><p>Game: "+entry.title+"</p><p>Genre: "+entry.genre+"</p><p>Date Added: "+entry.date+"</p></div><br>"
+                "<div class='entries'><p>Game: "+entry.title+"</p><p>Genre: "+entry.genre+"</p><p>Date Added: "+entry.date+"</p></div><br>"
             });
         });
     </script>
