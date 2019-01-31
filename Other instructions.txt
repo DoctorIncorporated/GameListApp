@@ -1,0 +1,10 @@
+nodemon     ~~To start server
+
+npm install mongodb --save                   ~~Install mongodb (Mongo Data Base)
+npm install nodemon --save                   ~~Install nodemon (requires Node Packet Manager)
+npm install express --save                   ~~Install express (requires downloading NPM^)
+npm install express-handlebars --save        ~~Install handlebars (requires express)
+
+
+npm install bootstrap
+gem install bootstrap -v 4.2.1
