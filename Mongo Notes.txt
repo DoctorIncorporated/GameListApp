@@ -1,0 +1,57 @@
+//~~https://docs.mongodb.com/manual/reference/command/
+
+show dbs ~~~ shows the databases
+db.createUser() ~~~ creates user
+db.createCollection ~~~ creates the collection or db
+
+//~~~~~~~Begin JSON Notation
+{
+    player_name:"Shapps",
+    player_lastname:"Shappy",
+
+    game_sessions:["ses1","ses2"],
+    contact_info{
+        login:"JShappy",
+        email:"JShapp@gmail.com",
+        city:"Carolina"
+    }
+    email_addresses:[
+        {email:"spud@gmail.com", name:"spud"},
+        {email:"holmes@gmail.com", name:"holmes"}
+    ]
+}
+//~~~~~End Example
+
+db.shappDatabase.insert({first_name:"Joe",last_name:"Smith"})
+
+db.shappDatabase.update({first_name:"Joe"}, {first_name:"Joe",last_name:"Smith",age:52})    //~~Completely updates a user
+                        \/+^Unique way to identify ||| ^re-enter all of the entry
+db.shappDatabase.update({first_name:"Joe"}, {$set:{age:23}})                            //~~Update a specific entry
+db.shappDatabase.update({first_name:"Joe"}, {$unset:{age:1}})                          //~~Deletes a specific entry
+                        ^Unique identifier |||           ^use in any entry to delete
+
+db.shappDatabase.update({first_name:"John"}, {first_name:"John",last_name:"Smith",age:53},{upsert:true})   //~~Updates user that doesn't exist in db
+
+db.shappDatabase.remove({first_name:"John"}, {justOne:true})
+
+db.shappDatabase.update({first_name:"John"}, {$rename:{"age":"years_since_birth"}}) //~~Renames entry name
+
+db.shappDatabase.find()         //~~~.pretty()~~~~~optional to make it look nice
+
+                           \/use "1"
+db.players.find().sort({_id:1}) //~~~.pretty()~~~        //~~Sort the database by an entry
+                        ^entry name
+
+//~~~~~~~~~~~~~~~~Example from the net
+db.createUser(
+   {
+        user: "reportsUser",
+        pwd: "12345678",
+        roles: [
+            { role: "read", db: "reporting" },
+            { role: "read", db: "products" },
+            { role: "read", db: "sales" },
+            { role: "readWrite", db: "accounts" }
+        ]
+    }
+)
