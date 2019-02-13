@@ -29,6 +29,8 @@ mongoose.connect("mongodb://localhost:27017/gameentries", {
 //Load in Entry Model
 require('./models/Entry');
 var Entry = mongoose.model('Entries');
+require('./models/Users');
+var Users = mongoose.model('Users');
 
 //sets up dandlebars as our view engine
 app.engine('handlebars', exphbs({
@@ -71,15 +73,20 @@ router.get('/', ensureAuthenticated, function(req, res){
     res.render('index');
 });
 //Route to entries
-router.get('/entries', function(req, res){
-    res.render('gameentries/addgame');
+router.get('/entries', ensureAuthenticated, function(req, res){
+    res.render('gameentries/addgame',
+    {user:req.user
+    });
 });
 //Route to Edit Game Entries
 router.get('/gameentries/edit/:id', function(req, res){
     Entry.findOne({
         _id:req.params.id
     }).then(function(entry){
-        res.render('gameentries/editgame', {entry:entry});
+        res.render('gameentries/editgame', {
+            users:req.user,
+            entry:entry
+        });
     });
     
     
@@ -106,15 +113,32 @@ router.get('/login', function(req, res){
 router.post('/login', function(req, res, next){
     passport.authenticate('local', {
         successRedirect:'/',
-        failureRedirect:'/login'
+        failureRedirect:'/users/register'
     })(req, res, next);
 });
 
+router.get('/logout', function(req, res){
+    req.logout();
+    res.redirect('/login');
+});
+
+//Index route
 app.get('/', ensureAuthenticated, function(req, res){
     //console.log("Request made from fetch");
-    Entry.find({}).then(function(entries){
+    Entry.find({user:req.user.id}).then(function(entries){
         res.render("index", {
+            user:req.user,
             entries:entries
+        });
+    });
+});
+
+//Gamers route
+app.get('/gamers', function(req, res){
+    //console.log("Request made from fetch");
+    Users.find({}).then(function(users){
+        res.render("gamers", {
+            users:users
         });
     });
 });
@@ -129,7 +153,8 @@ app.post('/addgame', function(req, res){
     console.log(req.body);
     var newEntry = {
         title:req.body.title,
-        genre:req.body.genre
+        genre:req.body.genre,
+        user:req.user.id
     }
     new Entry(newEntry).save().then(function(entry){
         res.redirect('/')

@@ -1,0 +1,14 @@
+c:
+cd program files
+cd mongodb
+cd server
+cd 4.0
+cd bin
+
+mongo
+
+show dbs
+use gameentries
+show collections
+show users
+db.users.find().pretty()
