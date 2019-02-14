@@ -8,15 +8,18 @@
     <ul class="navbar-nav mr-auto">      
       {{#if user}}
       <li class="nav-item active">
-        <a class="nav-link" href="/">Home</a>
+        <a class="nav-link" href="/gamers">Edit Games</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/entries">Entries</a>
+        <a class="nav-link" href="/entries">Enter Games</a>
       </li>      
       <li class="nav-item">
         <a class="nav-link" href="/logout">Logout</a>
       </li>
       {{else}}
+      <li class="nav-item">
+        <a class="nav-link" href="/">Homepage</a>
+      </li>
       <li class="nav-item">
         <a class="nav-link" href="/login">Login</a>
       </li>

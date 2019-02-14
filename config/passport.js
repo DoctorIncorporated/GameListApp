@@ -9,7 +9,7 @@ module.exports = function(passport){
         User.findOne({
             email:email
         }).then(function(user){
-            if(!user){
+            if(!user){                
                 return done(null, false, {message:"No User Found"});
             }
 
