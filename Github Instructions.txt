@@ -6,7 +6,6 @@ git remote add origin https://github.com/DoctorIncorporated/gitTest.git
 git push -u origin master
 //---------------------------------------------------------------------
 ##-To Make New Directory of this Repository
-git init
 git clone https://github.com/DoctorIncorporated/gitTest.git
 //---------------------------------------------------------------------
 ##-Update Existing Repository
